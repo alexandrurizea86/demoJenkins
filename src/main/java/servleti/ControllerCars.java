@@ -24,7 +24,7 @@ public class ControllerCars {
     @RequestMapping(value = "/toate", method = RequestMethod.GET)
     public ModelAndView metodaCarePrezintaMasinile () {
 
-        ModelAndView mav = new ModelAndView("/masini/toate_masinile");
+        ModelAndView mav = new ModelAndView("masini/toate");
 
         List <Car> preluate = datele.toate();
 
@@ -41,7 +41,7 @@ public class ControllerCars {
 
             Car masinaEditata = datele.omasina(id);
 
-            ModelAndView mav = new ModelAndView("/modifica/editare");
+            ModelAndView mav = new ModelAndView("masini/editare");
 
             mav.addObject("MASINA_EDITATA", masinaEditata);
 
@@ -56,14 +56,14 @@ public class ControllerCars {
     public String metodaCareModificaMasina2 (HttpServletRequest request) {
 
         Integer id = Integer.valueOf(request.getParameter("id"));
-        String make = request.getParameter("make");
-        String model = request.getParameter("model");
+        String make = request.getParameter("in_make");
+        String model = request.getParameter("in_model");
 
         Car masina = new Car(id, make, model, null, null);
 
         datele.update(masina);
 
-        return "redirect:/web/cars/toate";
+        return "redirect:toate";
 
 
     }
@@ -73,7 +73,7 @@ public class ControllerCars {
     @RequestMapping(value = "/adauga")
     public String metodaCuFormularAdaugare () {
 
-        return "/masini/adaugare";
+        return "masini/adaugare";
 
     }
 
@@ -89,7 +89,7 @@ public class ControllerCars {
 
             datele.salveaza(masina);
 
-            return "redirect:web/cars/toate";
+            return "redirect:toate";
 
 
     }
@@ -100,7 +100,7 @@ public class ControllerCars {
 
         datele.sterge(id);
 
-        return "redirect:web/cars/toate";
+        return "redirect:toate";
 
     }
 

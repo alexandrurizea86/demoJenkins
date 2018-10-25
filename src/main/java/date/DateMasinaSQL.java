@@ -6,10 +6,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DateMasinaSQL implements IDao {
+public class DateMasinaSQL implements IDao <Car> {
 
     @Override
-    public List toate() {
+    public List <Car> toate() {
+
+
 
         List<Car> listaMasini = new ArrayList<>();
 
@@ -116,7 +118,7 @@ public class DateMasinaSQL implements IDao {
 
             Class.forName("com.mysql.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cars");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cars", "root", "1234");
 
             PreparedStatement statementul = con.prepareStatement("UPDATE cars SET make=?, model=?, proprietari=?, service=? WHERE id=?");
 
@@ -157,7 +159,7 @@ public class DateMasinaSQL implements IDao {
 
             Class.forName("com.mysql.jdbc.Driver");
 
-            Connection conexiune = DriverManager.getConnection("jdbc:mysql://localhost:3306/cars");
+            Connection conexiune = DriverManager.getConnection("jdbc:mysql://localhost:3306/cars", "root", "1234");
 
             PreparedStatement statementul = conexiune.prepareStatement("INSERT INTO cars (make, model, proprietari, service) VALUES (?, ?, ?, ?)");
 
